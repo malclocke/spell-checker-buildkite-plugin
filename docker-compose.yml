@@ -1,0 +1,13 @@
+version: "3.3"
+
+services:
+  tests:
+    image: buildkite/plugin-tester
+    volumes:
+      - ".:/plugin:ro"
+
+  lint:
+    image: buildkite/plugin-linter
+    command: ['--id', 'malclocke/spell-checker']
+    volumes:
+      - ".:/plugin:ro"

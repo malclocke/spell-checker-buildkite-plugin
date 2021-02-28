@@ -1,0 +1,9 @@
+name: Spell Checker
+description: Checks spelling
+author: https://github.com/malclocke
+requirements: []
+configuration:
+  properties:
+    pattern:
+      type: string
+  additionalProperties: false

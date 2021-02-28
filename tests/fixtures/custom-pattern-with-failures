@@ -1,0 +1,9 @@
+    tests/inputs/TEST.bad.md
+        5 | The qick brown fox jumps over the lazy 
+        5 | brown fox jumps over the lazy dogg. 
+        6 | The quick brownn foxx jumps ovr the lzy dog. 
+        6 | The quick brownn foxx jumps ovr the lzy dog. 
+        6 | The quick brownn foxx jumps ovr the lzy dog. 
+        6 | ick brownn foxx jumps ovr the lzy dog. 
+
+>> 6 spelling errors found in 1 file
