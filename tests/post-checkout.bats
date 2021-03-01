@@ -6,7 +6,7 @@ load '/usr/local/lib/bats/load.bash'
   stub docker "run --rm -v $PWD:/workdir tmaier/markdown-spellcheck:latest --report \"*.md\" : cat tests/fixtures/default-pattern"
   stub buildkite-agent 'annotate --style "success" : echo "Annotated success"'
 
-  run "$PWD/hooks/command"
+  run "$PWD/hooks/post-checkout"
 
   assert_success
   assert_line ">> 1 file is free from spelling errors"
@@ -21,7 +21,7 @@ load '/usr/local/lib/bats/load.bash'
   stub docker "run --rm -v $PWD:/workdir tmaier/markdown-spellcheck:latest --report \"*.bad.md\" : cat tests/fixtures/custom-pattern-with-failures ; exit 1"
   stub buildkite-agent 'annotate --style "warning" : echo "Annotated error"'
 
-  run "$PWD/hooks/command"
+  run "$PWD/hooks/post-checkout"
 
   assert_success
   assert_line ">> 6 spelling errors found in 1 file"
@@ -36,7 +36,7 @@ load '/usr/local/lib/bats/load.bash'
   stub docker "run --rm -v $PWD:/workdir tmaier/markdown-spellcheck:latest --report \"*.good.md\" : cat tests/fixtures/default-pattern"
   stub buildkite-agent 'annotate --style "success" : echo "Annotated success"'
 
-  run "$PWD/hooks/command"
+  run "$PWD/hooks/post-checkout"
 
   assert_success
   assert_line ">> 1 file is free from spelling errors"

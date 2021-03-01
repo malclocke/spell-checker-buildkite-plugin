@@ -1,4 +1,4 @@
-FIXTURE_DEPS = hooks/command Makefile
+FIXTURE_DEPS = Makefile
 
 SPELLCHECK_COMAND = docker run --rm -v $(CURDIR):/workdir tmaier/markdown-spellcheck:latest --report
 
