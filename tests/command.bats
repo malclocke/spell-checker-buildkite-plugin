@@ -4,6 +4,7 @@ load '/usr/local/lib/bats/load.bash'
 
 @test "Default pattern" {
   stub docker "run --rm -v $PWD:/workdir tmaier/markdown-spellcheck:latest --report \"*.md\" : cat tests/fixtures/default-pattern"
+  stub buildkite-agent 'annotate --style "success" : echo "Annotated success"'
 
   run "$PWD/hooks/command"
 
@@ -11,6 +12,7 @@ load '/usr/local/lib/bats/load.bash'
   assert_line ">> 1 file is free from spelling errors"
 
   unstub docker
+  unstub buildkite-agent
 }
 
 @test "Custom pattern with failures" {
@@ -32,6 +34,7 @@ load '/usr/local/lib/bats/load.bash'
   export BUILDKITE_PLUGIN_SPELL_CHECKER_PATTERN="*.good.md"
 
   stub docker "run --rm -v $PWD:/workdir tmaier/markdown-spellcheck:latest --report \"*.good.md\" : cat tests/fixtures/default-pattern"
+  stub buildkite-agent 'annotate --style "success" : echo "Annotated success"'
 
   run "$PWD/hooks/command"
 
@@ -39,4 +42,5 @@ load '/usr/local/lib/bats/load.bash'
   assert_line ">> 1 file is free from spelling errors"
 
   unstub docker
+  unstub buildkite-agent
 }

@@ -1,16 +1,17 @@
 #!/bin/bash
 
-#set -euo pipefail
+set -euo pipefail
 
 # Globbing pattern defaults to "*.md"
 pattern=${BUILDKITE_PLUGIN_SPELL_CHECKER_PATTERN-*.md}
 
-spell_errors=$(docker run --rm -v $PWD:/workdir tmaier/markdown-spellcheck:latest --report "$pattern")
-spell_return=$?
-
-if [ $spell_return -ne 0 ] ; then
-  echo -e "$spell_errors" | buildkite-agent annotate --style "warning"
+# The markdown-spellcheck docker image returns 0 if there are no spelling
+# errors, 1 otherwise.
+if spellcheck_output=$(docker run --rm -v $PWD:/workdir tmaier/markdown-spellcheck:latest --report "$pattern") ; then
+  annotation_style="success"
+else
+  annotation_style="warning"
 fi
 
-echo -e "$spell_errors"
-
+echo -e "$spellcheck_output" | buildkite-agent annotate --style "$annotation_style"
+echo -e "$spellcheck_output"
