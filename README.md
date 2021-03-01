@@ -5,6 +5,9 @@ on all the markdown files in your repository.
 
 A warning annotation is added to the build if any spelling errors are found.
 
+![Screenshot](screenshot.png)
+
+### Example
 ```yml
 steps:
   - command: ls
