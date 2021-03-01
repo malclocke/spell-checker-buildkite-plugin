@@ -9,6 +9,6 @@ A warning annotation is added to the build if any spelling errors are found.
 steps:
   - command: ls
     plugins:
-      - malclocke/spell-checker#v1.0.0:
+      - malclocke/spell-checker#v1.0.2:
           pattern: '**/*.md'
 ```
