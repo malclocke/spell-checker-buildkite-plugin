@@ -1,0 +1,5 @@
+steps:
+  - command: ls
+    plugins:
+    - malclocke/spell-checker-buildkite-plugin#v1.0.0:
+        pattern: "**/*.md"
