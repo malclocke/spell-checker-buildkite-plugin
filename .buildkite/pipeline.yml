@@ -1,5 +1,5 @@
 steps:
   - command: ls
-    plugins:
-    - malclocke/spell-checker#v1.0.1:
-        pattern: "**/*.md"
+  - plugins:
+      - malclocke/spell-checker#v1.0.1:
+          pattern: "**/*.md"
